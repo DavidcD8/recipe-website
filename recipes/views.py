@@ -26,6 +26,19 @@ def register(request):
 
     return render(request, 'registration/register.html', {'form': form})
 
+
+def login_view(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            auth_login(request, user)
+            return redirect('home')  # Redirect to home page after login
+    else:
+        form = AuthenticationForm()
+
+    return render(request, 'registration/login.html', {'form': form})
+    
 # Home view
 def home(request):
     # Fetch the top-rated recipes (limit to the top 3 by average rating)
