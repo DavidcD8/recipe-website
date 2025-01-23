@@ -11,6 +11,49 @@ body {
   font-size: 1.5rem;
   padding: 0;
 }
+/* Nav Styling */
+header {
+  background-color: #ffffff;
+  
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr); /* 12 equal columns */
+  align-items: center; /* Align content vertically in the middle */
+}
+
+header h1 {
+  margin-bottom: 2px;
+  grid-column: 2 / span 8; /* Title starts at column 2 and spans 8 columns */
+}
+
+header h1 a {
+  color: #325c86;
+  text-decoration: none;
+}
+
+nav {
+  grid-column: 9 / span 3; 
+  display: grid; 
+  grid-template-columns: repeat(2, auto); 
+  align-items: center;
+  justify-content: end; 
+  gap: 1rem; 
+  margin-top: 0;
+  padding: 0.5rem 1rem; 
+}
+
+nav a {
+  color: #325c86;
+  margin-top:  -8px;
+  text-decoration: none;
+  text-align: center;
+}
+
+nav a:hover {
+  color: #e67e22;
+  transition: color 0.3s ease;
+}
+
 
 /* Form Elements Styling */
 form {
@@ -23,7 +66,7 @@ form {
 /* Heading Styling */
 h2 {
   font-family: 'Markazi Text', serif; 
-  color: #e67e22; 
+  color: #325c86; 
   font-size: 1.8rem;
   margin-bottom: 1.5rem;
   text-align: center;
@@ -87,7 +130,7 @@ label {
 .recipe-detail h2 {
     font-size: 2rem;
     text-align: center;
-    color: #e67e22;
+    color: #325c86;
     margin-bottom: 1rem;
     grid-column: 2 / span 10;
 }
@@ -151,7 +194,7 @@ label {
 .recipe-detail h3 {
     font-size: 1.5rem;
     margin: 1rem 0;
-    color: #e67e22;
+    color: #325c86;
     text-align: left;
     width: 100%;
     border-bottom: 2px solid #f1f1f1;  
@@ -315,6 +358,7 @@ label {
   font-size: 3rem;
   font-family: 'Markazi Text', serif;
   margin-bottom: 1rem;
+ 
 }
 
 #hero p {
@@ -335,82 +379,98 @@ label {
 #hero .btn-primary:hover {
   background-color: #2ecc71;  
 }
+/* General Styles for Card-Like Elements */
+.card {
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
+.card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
 
-/* Featured Recipes Section */
+.card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.card-description {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.card-rating {
+  font-size: 1rem;
+  color: #f39c12;
+}
+
+.card-link {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #2c3e50;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.card-link:hover {
+  background-color: #34495e;
+}
+
 /* Featured Recipes Section */
 #featured-recipes {
-    padding: 2rem 1rem;
-    background-color: white;
-    margin-bottom: 2rem;
-    display: grid;
-    grid-template-columns: repeat(12, 1fr); /* 12 equal columns */
-    gap: 1.5rem; /* spacing between the cards */
-    justify-items: center; /* Center items horizontally */
+  display: grid;
+  grid-template-columns: repeat(12, 1fr); /* Creates a 12-column grid */
+  grid-column: 2 / 12; /* Ensures the section spans from column 2 to column 12 */
+  gap: 20px;
+  padding: 40px 0;
 }
-
 #featured-recipes h2 {
-    font-size: 2rem;
-    color: #e67e22;
-    margin-bottom: 2rem;
-    text-align: center;
-    grid-column: 1 / -1; /* Make sure title spans the whole width of the grid */
+  font-size: 2rem;
+  font-weight: bold;
+  color: #325c86;
+  margin-bottom: 20px; /* Adds space below the header */
+  text-align: left; /* Aligns the title to the left */
+  grid-column: 2 / span 10; /* Ensures the title spans the required columns */
 }
 
-.recipe-grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr); /* 12 columns to align with grid-template-columns in #featured-recipes */
-    gap: 1.5rem; /* spacing between cards */
-    grid-column: 1 / -1; /* Place the grid in the middle */
+.horizontal-featured-recipes {
+  display: grid;
+  gap: 20px;
+  background-color: #ffffff;
+  box-shadow: #dededead 1px 1px 1px 1px;
+  border-radius: 8px;
+  grid-template-columns: 1fr 1fr 1fr; /* Ensures 3 featured recipes fit in one row */
+  grid-column: 2 / 8; /* Ensures the featured recipes section is centered from column 2 to column 12 */
+  padding: 8px;
 }
 
-.recipe-card {
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    width: 100%; /* Make the card smaller */
-    grid-column: 2 / 12; /* Make the card span from column 2 to column 6 */
-    margin: 0 auto; /* Center the card horizontally */
+.featured-recipe {
+  display: flex;
+  align-items: center; /* Centers items vertically */
+  justify-content: space-between; /* Space between image and text */
+  margin-bottom: 30px;
+  grid-column: span 4; /* Adjust this if you need more or fewer items per row */
 }
 
-.recipe-card img {
-    width: 100%; /* Ensure image fills the width of the card */
-    height: 300px; /* Set a fixed height to ensure all images are the same size */
-    object-fit: cover; /* Make sure the image covers the entire area without stretching */
-    object-position: center; /* Center the image in case it is cropped */
+.featured-recipe-img img {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 8px;
+  margin-right: 20px;
 }
 
-.recipe-card .content {
-    padding: 1rem;
-    background-color: #ffffff;
-    z-index: 1; /* Ensure text appears over the image */
-    position: relative; /* To ensure text stays on top of the image */
-}
-
-.recipe-card h3 {
-    color: #333;
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
-}
-
-.recipe-card p {
-    color: #7f8c8d;
-    margin-bottom: 1rem;
-}
-
-.recipe-card a {
-    color: #27ae60;
-    text-decoration: none;
-    font-size: 1.2rem;
-    transition: color 0.3s ease;
-}
-
-.recipe-card a:hover {
-    color: #2ecc71;
+.featured-recipe-text {
+  max-width: 500px;
 }
 
 /* All Recipes Section */
@@ -421,7 +481,7 @@ label {
 
 #all-recipes h2 {
   font-size: 2rem;
-  color: #e67e22;
+  color: #325c86;
   text-align: center;
   margin-bottom: 2rem;
 }
@@ -441,7 +501,7 @@ label {
 }
 
 .recipe-item h3 {
-  color: #333;
+  color: #325c86;
   font-size: 1.4rem;
   margin-bottom: 1rem;
 }
@@ -471,7 +531,7 @@ label {
 
 #instructions h2 {
   font-size: 2rem;
-  color: #e67e22;
+  color: #325c86;
   text-align: center;
   margin-bottom: 1.5rem;
 }
