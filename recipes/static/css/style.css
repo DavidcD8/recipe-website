@@ -1,7 +1,6 @@
 /* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Markazi+Text:wght@400..700&family=Roboto:wght@400;500&display=swap');
 
- 
 /* General Body Styling */
 body {
   font-family: 'Markazi Text', sans-serif;
@@ -11,10 +10,10 @@ body {
   font-size: 1.5rem;
   padding: 0;
 }
+
 /* Nav Styling */
 header {
   background-color: #ffffff;
-  
   padding: 1rem;
   display: grid;
   grid-template-columns: repeat(12, 1fr); /* 12 equal columns */
@@ -27,7 +26,7 @@ header h1 {
 }
 
 header h1 a {
-  color: #325c86;
+  color: #ff6f61;
   text-decoration: none;
 }
 
@@ -43,385 +42,53 @@ nav {
 }
 
 nav a {
-  color: #325c86;
+  color: #ff6f61;
   margin-top:  -8px;
   text-decoration: none;
   text-align: center;
 }
 
 nav a:hover {
-  color: #e67e22;
+  color: #e65a50;
   transition: color 0.3s ease;
 }
 
-
-/* Form Elements Styling */
-form {
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Heading Styling */
-h2 {
-  font-family: 'Markazi Text', serif; 
-  color: #325c86; 
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-
-/* Button Styling */
-button {
-  background-color: #edda0d;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1.2rem;
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: #e67e22;
-}
-
-button:focus {
-  outline: none;
-  border: 2px solid #e67e22;
-}
-
-/* Input/textarea Styling */
-input, textarea {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 1rem;
-}
-
-input:focus, textarea:focus {
-  border-color: #27ae60;
-  outline: none;
-}
-
-/* Form Label Styling */
-label {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-/* General Grid Layout for Recipe Details */
-.recipe-detail {
-    display: grid; /* Use grid layout */
-    grid-template-columns: repeat(12, 1fr);
-    gap: 1.5rem; 
-    grid-column: 2 / span 10; 
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 1rem;
-    font-family: 'Markazi Text', serif;
-}
-
-/* Recipe Title Styling */
-.recipe-detail h2 {
-    font-size: 2rem;
-    text-align: center;
-    color: #325c86;
-    margin-bottom: 1rem;
-    grid-column: 2 / span 10;
-}
-
-/* Recipe Image Styling */
-.recipe-detail img.recipe-image {
-    width: 100%;
-    height: 400px;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-    object-fit: fills;
-    grid-column: 2 / span 4;
-}
-
-#detail-image {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-    grid-column: 2 / span 10;
-}
-
-/* Recipe Info Styling */
-.recipe-info {
-    display: grid;
-    grid-column: 2 / span 10;  
-    gap: 0.5rem;
-    text-align: left;
-    width: 100%;
-    font-size: 1.5rem;
-    line-height: 1.5;
-}
-
-/* Ingredients List Styling */
-.ingredients-list {
-    list-style-type: disc;
-    padding-left: 1.5rem;
-    text-align: left;
-    width: 100%;
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-    line-height: 1.5;
-    grid-column: 2 / span 10;  
-
-}
-
-/* Preparation Steps Styling */
-.preparation-steps {
-    list-style-type: decimal;
-    padding-left: 1.5rem;
-    text-align: left;
-    width: 100%;
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-    line-height: 1.5;
-    grid-column: 2 / span 10;  
-
-}
-
-/* Headings Styling */
-.recipe-detail h3 {
-    font-size: 1.5rem;
-    margin: 1rem 0;
-    color: #325c86;
-    text-align: left;
-    width: 100%;
-    border-bottom: 2px solid #f1f1f1;  
-    padding-bottom: 0.5rem;
-    grid-column: 2 / span 10; 
-}
-
-/* Add Hover Effect on Lists */
-.ingredients-list li:hover,
-.preparation-steps li:hover {
-    color: #e67e22;
-    transition: color 0.3s ease;
-}
-
-/* Optional Styling for Responsive Design */
-@media (max-width: 600px) {
-    .recipe-detail {
-        padding: 0.5rem;
-    }
-
-    .recipe-detail h2 {
-        font-size: 1.75rem;
-    }
-
-    .recipe-detail h3 {
-        font-size: 1.25rem;
-    }
-
-    .recipe-info {
-        font-size: 0.9rem;
-    }
-}
-
-
-/* Rating Section Wrapper */
-.recipe-rating-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 1rem;
-    width: 100%;
-    grid-column: 2 / span 10;  /* Align with other sections */
-}
-
-/* Rating Stars Styling */
-.rating-stars {
-    font-size: 1.5rem; /* Same size as list items */
-    color: #f39c12;
-}
-
-.rating-stars span {
-    margin-right: 5px;
-}
-
-/* Average Rating Styling */
-.average-rating {
-    font-size: 1.5rem;
-    line-height: 1.5;
-    text-align: left;
-    width: 100%;
-}
-
-/* User Rating Styling */
-.user-rating {
-    font-size: 1.5rem;
-    line-height: 1.5;
-    text-align: left;
-    width: 100%;
-}
-
-/* Hover Effect for Rating Stars */
-.rating-stars span:hover {
-    color: #e67e22;
-    transition: color 0.3s ease;
-}
-
-/* Rate this Recipe Form Styling */
-.recipe-rating-form {
-    margin-top: 1.5rem;
-    grid-column: 2 / span 10;  /* Align with other sections */
-}
-
-/* Rate this Recipe Form Styling */
-.recipe-rating-form {
-    margin-top: 1.5rem;
-    grid-column: 2 / span 10;  /* Align with other sections */
-}
-
-/* Rating Options Wrapper */
-.rating-options {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start; /* Align horizontally */
-    margin-bottom: 10px;
-}
-
-/* Rating Radio Buttons */
-.rating-options label {
-    margin-right: 15px;
-    font-size: 1.5rem;
-    display: flex;
-    align-items: center;
-}
-
-.rating-options input[type="radio"] {
-    margin-right: 5px;
-    transform: scale(1.2);
-    cursor: pointer;
-}
-
-/* Submit Button Styling */
-.recipe-rating-form button {
-    background-color: #e67e22;
-    color: white;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
-}
-
-/* Hover effect on Submit Button */
-.recipe-rating-form button:hover {
-    background-color: #d35400;
-}
-
-/* Optional Responsive Design for Ratings */
-@media (max-width: 600px) {
-    .recipe-rating-form {
-        margin-top: 1rem;
-    }
-
-    .rating-options {
-        flex-wrap: wrap; /* Allow wrapping for small screens */
-    }
-
-    .rating-options label {
-        margin-right: 10px;
-    }
-
-    .recipe-rating-form button {
-        font-size: 1rem;
-        padding: 0.5rem;
-    }
-}
-
-
-
-
-/* Hero Section Styling */
+/* Hero Section */
 #hero {
-  background-color: #e67e22;  
-  color: white;  
-  padding: 4rem 2rem;
+  background: url('/static/images/heroimg.jpg') center/cover no-repeat;
+  height: 400px;
+  display: flex;
+  object-fit: cover;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
   text-align: center;
-  margin-bottom: 2rem;
 }
 
-#hero h1 {
+#hero .hero-content h1 {
   font-size: 3rem;
-  font-family: 'Markazi Text', serif;
-  margin-bottom: 1rem;
- 
-}
-
-#hero p {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-}
-
-#hero .btn-primary {
-  background-color: #27ae60;  
-  color: white;
-  padding: 1rem 2rem;
-  border-radius: 5px;
-  text-decoration: none;
-  font-size: 1.2rem;
-  transition: background-color 0.3s ease;
-}
-
-#hero .btn-primary:hover {
-  background-color: #2ecc71;  
-}
-/* General Styles for Card-Like Elements */
-.card {
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: #ffffff;
-  padding: 20px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-}
-
-.card-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 10px;
-}
-
-.card-description {
-  font-size: 1rem;
-  color: #555;
   margin-bottom: 15px;
 }
 
-.card-rating {
-  font-size: 1rem;
-  color: #f39c12;
+#hero .hero-content p {
+  font-size: 1.35rem;
+  margin-bottom: 20px;
 }
 
-.card-link {
+.btn-primary {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #2c3e50;
-  color: white;
+  background-color: #ff6f61;
+  color: #fff;
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
   text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
 }
 
-.card-link:hover {
-  background-color: #34495e;
+.btn-primary:hover {
+  background-color: #e65a50;
 }
 
 /* Featured Recipes Section */
@@ -439,6 +106,17 @@ label {
   margin-bottom: 20px; /* Adds space below the header */
   text-align: left; /* Aligns the title to the left */
   grid-column: 2 / span 10; /* Ensures the title spans the required columns */
+  position: relative;
+}
+
+#featured-recipes h2::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #ff6f61; /* Decorative line */
 }
 
 .horizontal-featured-recipes {
@@ -446,9 +124,9 @@ label {
   gap: 20px;
   background-color: #ffffff;
   box-shadow: #dededead 1px 1px 1px 1px;
-  border-radius: 8px;
+  border-radius: 3px;
   grid-template-columns: 1fr 1fr 1fr; /* Ensures 3 featured recipes fit in one row */
-  grid-column: 2 / 8; /* Ensures the featured recipes section is centered from column 2 to column 12 */
+  grid-column: 2 / 7; /* Ensures the featured recipes section is centered from column 2 to column 12 */
   padding: 8px;
 }
 
@@ -465,7 +143,7 @@ label {
   height: 200px;
   object-fit: cover;
   object-position: center;
-  border-radius: 8px;
+  border-radius: 3px;
   margin-right: 20px;
 }
 
@@ -473,101 +151,452 @@ label {
   max-width: 500px;
 }
 
-/* All Recipes Section */
-#all-recipes {
-  padding: 2rem 1rem;
-  background-color: #ffffff;
+/* Featured Recipe Image */
+.featured-recipe-img img {
+  width: 300px;
+  height: 200px;
+  object-fit: cover; /* Ensures the image covers the area without distortion */
+  object-position: center; /* Ensures the image is centered */
+  border-radius: 3px;
+  margin-right: 20px;
 }
 
-#all-recipes h2 {
+/* New Recipes Section */
+#new-recipes {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-column: 2 / 12;
+  gap: 20px;
+  padding: 40px 0;
+}
+
+#new-recipes h2 {
   font-size: 2rem;
+  font-weight: bold;
   color: #325c86;
-  text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 20px;
+  text-align: left;
+  grid-column: 2 / span 10;
+  position: relative;
+}
+
+#new-recipes h2::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #ff6f61;
 }
 
 .recipe-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column: 2 / 12;
 }
 
 .recipe-item {
   background-color: #ffffff;
-  border-radius: 8px;
-  padding: 1rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  box-shadow: #dededead 1px 1px 1px 1px;
+  border-radius: 3px;
+  padding: 15px;
 }
 
 .recipe-item h3 {
+  font-size: 1.25rem;
   color: #325c86;
-  font-size: 1.4rem;
-  margin-bottom: 1rem;
+  margin-bottom: 10px;
 }
 
 .recipe-item p {
-  color: #7f8c8d;
-  margin-bottom: 1rem;
+  color: #6c6c6c;
+  margin-bottom: 15px;
 }
 
 .recipe-item a {
-  color: #27ae60;
+  color: #ff6f61;
   text-decoration: none;
-  font-size: 1.2rem;
-  transition: color 0.3s ease;
+  font-weight: bold;
+  display: inline-block;
+  padding-top: 5px;
 }
 
-.recipe-item a:hover {
-  color: #2ecc71;
+.recipe-item img {
+  width: 300px;  /* Specific width */
+  height: 200px; /* Specific height */
+  object-fit: cover;
+  object-position: center;
+  border-radius: 3px;
 }
 
-/* Instructions Section */
-#instructions {
-  padding: 2rem 1rem;
-  background-color: #f1f1f1;
-  margin-bottom: 2rem;
+/* All Recipes Section */
+#all-recipes {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-column: 2 / 12;
+  gap: 20px;
+  padding: 40px 0;
 }
 
-#instructions h2 {
+#all-recipes h2 {
   font-size: 2rem;
+  font-weight: bold;
   color: #325c86;
-  text-align: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 20px;
+  text-align: left;
+  grid-column: 2 / span 10;
+  position: relative;
 }
 
-#instructions ul {
+#all-recipes h2::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #ff6f61;
+}
+
+.recipe-list {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column: 2 / 12;
+}
+
+.recipe-item {
+  background-color: #ffffff;
+  box-shadow: #dededead 1px 1px 1px 1px;
+  border-radius: 3px;
+  padding: 15px;
+}
+
+.recipe-item h3 {
+  font-size: 1.25rem;
+  color: #325c86;
+  margin-bottom: 10px;
+}
+
+.recipe-item p {
+  color: #6c6c6c;
+  margin-bottom: 15px;
+}
+
+.recipe-item a {
+  color: #ff6f61;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  padding-top: 5px;
+}
+
+.recipe-item img {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 3px;
+}
+
+/* Suggested Recipes Section */
+#suggested-recipes {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-column: 2 / 12;
+  gap: 20px;
+  padding: 40px 0;
+}
+
+#suggested-recipes h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #325c86;
+  margin-bottom: 20px;
+  text-align: left;
+  grid-column: 2 / span 10;
+  position: relative;
+}
+
+#suggested-recipes h2::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #ff6f61;
+}
+
+.recipe-list {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column: 2 / 12;
+}
+
+.recipe-item {
+  background-color: #ffffff;
+  box-shadow: #dededead 1px 1px 1px 1px;
+  border-radius: 3px;
+  padding: 0; /* Remove padding from the card */
+  overflow: hidden; /* Ensure the image doesn't overflow the rounded corners */
+}
+
+.recipe-item h3 {
+  font-size: 1.25rem;
+  color: #325c86;
+  margin-bottom: 10px;
+  padding-left: 5px;
+  padding-bottom: 5px;
+}
+
+.recipe-item p {
+  color: #6c6c6c;
+  margin-bottom: 15px;
+  padding-left: 5px;
+  padding-bottom: 5px;
+}
+
+.recipe-item a {
+  color: #ff6f61;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-bottom: 5px;
+
+}
+
+.recipe-item img {
+  width: 100%; /* Make image span the full width */
+  height: 200px; /* Fixed height */
+  object-fit: cover; /* Ensure the image covers the area without distortion */
+  object-position: center; /* Center the image */
+  border-radius: 0; /* Remove any border radius from the image to match the card's edges */
+}
+
+/* Recipe Details Section */
+.recipe-detail {
+  display: grid; /* Use grid layout */
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem; 
+  grid-column: 2 / span 10; 
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 1rem;
+  font-family: 'Markazi Text', serif;
+}
+
+/* Recipe Title Styling */
+.recipe-detail h2 {
+  font-size: 2rem;
+  text-align: center;
+  color: #ff6f61;
+  margin-bottom: 1rem;
+  grid-column: 2 / span 10;
+  position: relative;
+}
+
+.recipe-detail h2::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #ff6f61; /* Decorative line */
+}
+
+/* Recipe Image Styling */
+.recipe-detail img.recipe-image {
+  width: 100%;
+  height: 400px;
+  border-radius: 3px;
+  margin-bottom: 1rem;
+  object-fit: fill;
+  grid-column: 2 / span 4;
+}
+
+#detail-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 3px;
+  margin-bottom: 1rem;
+  grid-column: 2 / span 10;
+}
+
+/* Recipe Info Styling */
+.recipe-info {
+  display: grid;
+  grid-column: 2 / span 10;  
+  gap: 0.5rem;
+  text-align: left;
+  width: 100%;
+  font-size: 1.5rem;
+  line-height: 1.5;
+}
+
+/* Ingredients List Styling */
+.ingredients-list {
   list-style-type: disc;
   padding-left: 1.5rem;
   text-align: left;
-}
-
-#instructions li {
-  font-size: 1.2rem;
+  width: 100%;
   margin-bottom: 1rem;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  grid-column: 2 / span 10;  
 }
 
-/* Optional Styling for Responsive Design */
+/* Preparation Steps Styling */
+.preparation-steps {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  text-align: left;
+  width: 100%;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  grid-column: 2 / span 10;  
+}
+
+/* Headings Styling */
+.recipe-detail h3 {
+  font-size: 1.5rem;
+  margin: 1rem 0;
+  color: #ff6f61;
+  text-align: left;
+  width: 100%;
+  border-bottom: 2px solid #f1f1f1;  
+  padding-bottom: 0.5rem;
+  grid-column: 2 / span 10; 
+}
+
+/* Rating Section Wrapper */
+.recipe-rating-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  width: 100%;
+  grid-column: 2 / span 10; 
+}
+
+/* Rating Stars Styling */
+.rating-stars {
+  font-size: 1.5rem; /* Same size as list items */
+  color: #f8cf17;
+}
+
+.rating-stars span {
+  margin-right: 5px;
+}
+
+/* Average Rating Styling */
+.average-rating {
+  font-size: 1.5rem;
+  line-height: 1.5;
+  text-align: left;
+  width: 100%;
+}
+
+/* User Rating Styling */
+.user-rating {
+  font-size: 1.5rem;
+  line-height: 1.5;
+  text-align: left;
+  width: 100%;
+}
+
+/* Hover Effect for Rating Stars */
+.rating-stars span:hover {
+  color: #e67e22;
+  transition: color 0.3s ease;
+}
+
+/* Rate this Recipe Form Styling */
+.recipe-rating-form {
+  margin-top: 1.5rem;
+  grid-column: 2 / span 10;  /* Align with other sections */
+}
+
+/* Rate this Recipe Form Styling */
+.recipe-rating-form {
+  margin-top: 1.5rem;
+  grid-column: 2 / span 10;  /* Align with other sections */
+}
+
+/* Rating Options Wrapper */
+.rating-options {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Align horizontally */
+  margin-bottom: 10px;
+}
+
+/* Rating Radio Buttons */
+.rating-options label {
+  margin-right: 15px;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.rating-options input[type="radio"] {
+  margin-right: 5px;
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+/* Submit Button Styling */
+.recipe-rating-form button {
+  background-color: #ff6f61;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect on Submit Button */
+.recipe-rating-form button:hover {
+  background-color: #e65a50;
+}
+
+/* Optional Responsive Design for Ratings */
 @media (max-width: 600px) {
-  body {
-    font-size: 1.3rem;
+  .recipe-rating-form {
+      margin-top: 1rem;
   }
 
-  #hero h1 {
-    font-size: 2.5rem;
+  .rating-options {
+      flex-wrap: wrap; /* Allow wrapping for small screens */
   }
 
-  #hero p {
-    font-size: 1.1rem;
+  .rating-options label {
+      margin-right: 10px;
   }
 
-  .recipe-grid {
-    grid-template-columns: 1fr 1fr; /* 2 columns for small screens */
+  .recipe-rating-form button {
+      font-size: 1rem;
+      padding: 0.5rem;
   }
+}
+/* Footer Styling */
+footer {
+  background-color: #333;
+  color: #ffffff;
+  padding: 30px 0;
+  text-align: center;
+}
 
-  .recipe-card {
-    text-align: left;
-        grid-column: 1 / 12; /* Make the card span from column 2 to column 6 */
-
-  }
+footer p {
+  font-size: 1.25rem;
+  color: #ffffff;
 }

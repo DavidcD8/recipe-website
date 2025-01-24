@@ -8,7 +8,8 @@ from .models import Recipe, Rating
 from django.core.paginator import Paginator
 from django.db.models import Avg
 from django.utils import timezone
-
+from django.core.exceptions import ValidationError
+from PIL import Image
 
 # Register view
 def register(request):
@@ -46,19 +47,23 @@ def home(request):
         avg_rating=Avg('rating__value')
     ).order_by('-avg_rating')[:3]  # Getting the top 3 recipes by rating
 
-    # Update the `featured` flag for these recipes (Optional: If you want to store it in the DB)
-    Recipe.objects.update(featured=False)  # Reset previous featured recipes
-    for recipe in featured_recipes:
-        recipe.featured = True
-        recipe.save()
+    # Fetch new recipes (optional)
+    new_recipes = Recipe.objects.all().order_by('-created_at')[:5]  # Fetch the 5 latest recipes
 
-    all_recipes = Recipe.objects.all()  # Fetch all recipes (you can paginate this)
+    # Fetch all recipes (pagination can be added)
+    all_recipes = Recipe.objects.all()
+
+    # Fetch suggested recipes based on some logic (e.g., popularity, user preferences, etc.)
+    suggested_recipes = Recipe.objects.annotate(
+        avg_rating=Avg('rating__value')
+    ).order_by('-avg_rating')[:5]  # Top 5 recipes by rating or another criterion
 
     return render(request, 'recipes/home.html', {
         'featured_recipes': featured_recipes,
+        'new_recipes': new_recipes,
         'all_recipes': all_recipes,
+        'suggested_recipes': suggested_recipes,
     })
-    
 
 
 # List all recipes
@@ -108,7 +113,23 @@ def recipe_detail(request, pk):
 def add_recipe(request):
     if request.method == 'POST':
         form = RecipeForm(request.POST, request.FILES)
+
         if form.is_valid():
+            # Check the image dimensions here before saving
+            image = form.cleaned_data.get('image')
+
+            try:
+                img = Image.open(image)
+                width, height = img.size
+
+                if width < 1024 or height < 768:
+                    raise ValidationError("The image must be at least 1024px wide and 768px tall.")
+
+            except Exception as e:
+                form.add_error('image', "The image must be at least 1024px wide and 768px tall.")
+                return render(request, 'recipes/add_recipe.html', {'form': form})
+
+            # If validation passes, save the recipe
             recipe = form.save(commit=False)
             recipe.author = request.user
             recipe.save()
