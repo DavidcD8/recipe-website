@@ -31,14 +31,13 @@ header h1 a {
 }
 
 nav {
-  grid-column: 9 / span 3; 
-  display: grid; 
-  grid-template-columns: repeat(2, auto); 
+  grid-column: 8/ span 4;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
   align-items: center;
-  justify-content: end; 
-  gap: 1rem; 
+  justify-content: end;
+  gap: 1rem;
   margin-top: 0;
-  padding: 0.5rem 1rem; 
 }
 
 nav a {
@@ -126,17 +125,20 @@ nav a:hover {
   box-shadow: #dededead 1px 1px 1px 1px;
   border-radius: 3px;
   grid-template-columns: 1fr 1fr 1fr; /* Ensures 3 featured recipes fit in one row */
-  grid-column: 2 / 7; /* Ensures the featured recipes section is centered from column 2 to column 12 */
+  grid-column: 2 / span 10; /* Ensures the featured recipes section is centered from column 2 to column 12 */
   padding: 8px;
 }
 
 .featured-recipe {
   display: flex;
-  align-items: center; /* Centers items vertically */
-  justify-content: space-between; /* Space between image and text */
+  align-items: center;
+  justify-content: space-between;
   margin-bottom: 30px;
-  grid-column: span 4; /* Adjust this if you need more or fewer items per row */
-}
+  padding: 20px;
+  grid-column: span 4;
+  border-radius: 8px;
+  box-shadow: #dededead 0px 3px 0px 0px;
+  box-shadow: black 1px;}
 
 .featured-recipe-img img {
   width: 300px;

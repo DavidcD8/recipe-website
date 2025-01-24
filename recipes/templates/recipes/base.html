@@ -10,11 +10,17 @@
     <header>
         <h1><a href="/">Easy Recipes</a></h1>
         <nav id="nav">
-          <a href="/">Home</a>
-          <a href="/add/">Add Recipe</a>
+            <a href="/">Home</a>
+            {% if user.is_authenticated %}
+                <a href="/add/">Add Recipe</a>
+                <a href="/logout/">Logout</a>
+            {% else %}
+                <a href="/login/">Login</a>
+                <a href="/register/">Register</a>
+            {% endif %}
         </nav>
-      </header>
-      
+    </header>
+    
   
     <main>
         {% block content %}{% endblock %}
