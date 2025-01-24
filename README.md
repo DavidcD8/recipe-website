@@ -10,43 +10,7 @@ A web platform to share, browse, and rate delicious recipes. Users can submit th
 - **Rate Recipes**: Users can rate recipes they have tried, with average ratings displayed.
 - **Add New Recipes**: Users can submit their own recipes, including images, ingredients, instructions, and ratings.
 
-## Installation
-
-To set up the project locally:
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/your-username/recipe-website.git
-   cd recipe-website
-   ```
-
-2. Install the required dependencies:
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. Apply database migrations:
-
-   ```bash
-   python manage.py migrate
-   ```
-
-4. Create a superuser to access the Django admin:
-
-   ```bash
-   python manage.py createsuperuser
-   ```
-
-5. Run the development server:
-
-   ```bash
-   python manage.py runserver
-   ```
-
-6. Access the website at `http://127.0.0.1:8000/`.
-
+ 
 ## Usage
 
 - **Home Page**: Display a hero section and featured recipes.
