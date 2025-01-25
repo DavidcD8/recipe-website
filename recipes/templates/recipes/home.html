@@ -1,163 +1,114 @@
 {% extends 'recipes/base.html' %}
 {% load static %}
 {% block content %}
-  <!-- Hero Section -->
-  <section id="hero">
-    <div class="hero-content">
-        <h1>Discover Delicious Recipes</h1>
-        <p>Find your next favorite meal or share your own!</p>
-        <a href="#all-recipes" class="btn-primary">Browse Recipes</a>
-    </div>
-  </section>
+<div class="container">
+    <aside class="sidebar">
+        <h3>Filter Recipes</h3>
+        <form method="get" action="{% url 'recipe_list' %}">
+            <input type="text" name="q" placeholder="Search recipes..." class="search-input">
+            <select name="difficulty" class="filter-select">
+                <option value="">Difficulty</option>
+                <option value="Easy">Easy</option>
+                <option value="Medium">Medium</option>
+                <option value="Hard">Hard</option>
+            </select>
+            <select name="category" class="filter-select">
+                <option value="">Category</option>
+                {% for category, name in Recipe.CATEGORY_CHOICES %}
+                    <option value="{{ category }}">{{ name }}</option>
+                {% endfor %}
+            </select>
+            <select name="tag" class="filter-select">
+                <option value="">By Tag</option>
+                {% for tag in tags %}
+                    <option value="{{ tag.name }}">{{ tag.name }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit" class="search-button">Filter</button>
+        </form>
+    </aside>
 
-  <!-- Featured Recipes Section -->
-  <section id="featured-recipes">
-      <h2>Featured Recipes</h2>
-      <div class="horizontal-featured-recipes">
-          {% for recipe in featured_recipes %}
-              <div class="featured-recipe">
-                  <div class="featured-recipe-img">
-                      {% if recipe.image %}
-                          <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}">
-                      {% else %}
-                          <img src="{% static 'images/placeholder.jpg' %}" alt="Placeholder image">
-                      {% endif %}
-                  </div>
-                  <div class="featured-recipe-text">
-                      <h3 class="featured-recipe-title">{{ recipe.title }}</h3>
-                      <p class="featured-recipe-rating">
-                          <strong>Rating:</strong>
-                          <span class="rating-stars">
-                              {% with recipe.avg_rating|default:0 as avg_rating %}
-                                  {% for i in "12345"|make_list %}
-                                      {% if forloop.counter <= avg_rating %}
-                                          <span>★</span>
-                                      {% else %}
-                                          <span>☆</span>
-                                      {% endif %}
-                                  {% endfor %}
-                              {% endwith %}
-                          </span>
-                          ({{ recipe.avg_rating|default:"No ratings" }})
-                      </p>
-                      <a href="{% url 'recipe_detail' recipe.id %}">View Recipe</a>
-                  </div>
-              </div>
-          {% endfor %}
-      </div>
-  </section>
+    <main class="main-content">
+        <div class="hero">
+            <img src="{% static 'images/heroimg.jpg' %}" alt="Delicious Dish">
+                <div class="hero-text">
+                    <h1>Discover Delicious Recipes</h1>
+                    <p>Find your next favorite meal or share your own!</p>
+                    <a href="#all-recipes" class="btn-primary">Browse Recipes</a>
+            
+            </div>
+        </div>
 
-  <!-- New Recipes Section (Optional) -->
-  <section id="new-recipes">
-      <h2>New Recipes</h2>
-      <div class="recipe-list">
-          {% for recipe in new_recipes %}
-              <div class="recipe-item">
-                  <div class="recipe-item-img">
-                      {% if recipe.image %}
-                          <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}">
-                      {% else %}
-                          <img src="{% static 'images/placeholder.jpg' %}" alt="Placeholder image">
-                      {% endif %}
-                  </div>
-                  <div class="recipe-item-text">
-                      <h3>{{ recipe.title }}</h3>
-                      <p>{{ recipe.ingredients|truncatewords:15 }}</p>
-                      <p class="recipe-rating">
-                          <strong>Rating:</strong>
-                          <span class="rating-stars">
-                              {% with recipe.avg_rating|default:0 as avg_rating %}
-                                  {% for i in "12345"|make_list %}
-                                      {% if forloop.counter <= avg_rating %}
-                                          <span>★</span>
-                                      {% else %}
-                                          <span>☆</span>
-                                      {% endif %}
-                                  {% endfor %}
-                              {% endwith %}
-                          </span>
-                          ({{ recipe.avg_rating|default:"No ratings" }})
-                      </p>
-                      <a href="{% url 'recipe_detail' recipe.id %}">View Recipe</a>
-                  </div>
-              </div>
-          {% endfor %}
-      </div>
-  </section>
+ 
 
-  <!-- All Recipes Section -->
-  <section id="all-recipes">
-      <h2>All Recipes</h2>
-      <div class="recipe-list">
-          {% for recipe in all_recipes %}
-              <div class="recipe-item">
-                  <div class="recipe-item-img">
-                      {% if recipe.image %}
-                          <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}">
-                      {% else %}
-                          <img src="{% static 'images/placeholder.jpg' %}" alt="Placeholder image">
-                      {% endif %}
-                  </div>
-                  <div class="recipe-item-text">
-                      <h3>{{ recipe.title }}</h3>
-                      <p>{{ recipe.ingredients|truncatewords:15 }}</p>
-                      <p class="recipe-rating">
-                          <strong>Rating:</strong>
-                          <span class="rating-stars">
-                              {% with recipe.avg_rating|default:0 as avg_rating %}
-                                  {% for i in "12345"|make_list %}
-                                      {% if forloop.counter <= avg_rating %}
-                                          <span>★</span>
-                                      {% else %}
-                                          <span>☆</span>
-                                      {% endif %}
-                                  {% endfor %}
-                              {% endwith %}
-                          </span>
-                          ({{ recipe.avg_rating|default:"No ratings" }})
-                      </p>
-                      <a href="{% url 'recipe_detail' recipe.id %}">View Recipe</a>
-                  </div>
-              </div>
-          {% endfor %}
-      </div>
-  </section>
+        
+        <section class="featured-recipes">
+            <h2>Featured Recipes</h2>
+            <div class="carousel">
+                {% for recipe in featured_recipes %}
+                    <div class="carousel-item">
+                        <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}" class="recipe-thumbnail">
+                        <div class="recipe-info">
+                            <h3>{{ recipe.title }}</h3>
+                            <p class="recipe-rating">
+                                {% with recipe.average_rating|default:0 as avg_rating %}
+                                    {% for i in "12345"|make_list %}
+                                        {% if forloop.counter <= avg_rating %}
+                                            <span class="star-filled">★</span>
+                                        {% else %}
+                                            <span class="star-empty">☆</span>
+                                        {% endif %}
+                                    {% endfor %}
+                                    ({{ avg_rating|default:"No ratings" }})
+                                {% endwith %}
+                            </p>
+                            <p class="recipe-tags">
+                                {% for tag in recipe.tags.all %}
+                                    <span class="tag">{{ tag.name }}</span>
+                                {% endfor %}
+                            </p>
+                            <a href="{% url 'recipe_detail' recipe.pk %}" class="view-recipe-btn">View Recipe</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
 
-  <!-- Suggested Recipes Section -->
-  <section id="suggested-recipes">
-      <h2>Suggested Recipes</h2>
-      <div class="recipe-list">
-          {% for recipe in suggested_recipes %}
-              <div class="recipe-item">
-                  <div class="recipe-item-img">
-                      {% if recipe.image %}
-                          <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}">
-                      {% else %}
-                          <img src="{% static 'images/placeholder.jpg' %}" alt="Placeholder image">
-                      {% endif %}
-                  </div>
-                  <div class="recipe-item-text">
-                      <h3>{{ recipe.title }}</h3>
-                      <p>{{ recipe.ingredients|truncatewords:15 }}</p>
-                      <p class="recipe-rating">
-                          <strong>Rating:</strong>
-                          <span class="rating-stars">
-                              {% with recipe.avg_rating|default:0 as avg_rating %}
-                                  {% for i in "12345"|make_list %}
-                                      {% if forloop.counter <= avg_rating %}
-                                          <span>★</span>
-                                      {% else %}
-                                          <span>☆</span>
-                                      {% endif %}
-                                  {% endfor %}
-                              {% endwith %}
-                          </span>
-                          ({{ recipe.avg_rating|default:"No ratings" }})
-                      </p>
-                      <a href="{% url 'recipe_detail' recipe.id %}">View Recipe</a>
-                  </div>
-              </div>
-          {% endfor %}
-      </div>
-  </section>
+        <section class="new-recipes">
+            <h2>New Recipes</h2>
+            <div class="grid">
+                {% for recipe in new_recipes %}
+                    <div class="recipe-card">
+                        <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}" class="recipe-thumbnail">
+                        <div class="recipe-info">
+                            <h3>{{ recipe.title }}</h3>
+                            <p class="recipe-author">By {{ recipe.author.username }} - {{ recipe.created_at|date:"M d, Y" }}</p>
+                            <p class="recipe-rating">
+                                {% with recipe.average_rating|default:0 as avg_rating %}
+                                    {% for i in "12345"|make_list %}
+                                        {% if forloop.counter <= avg_rating %}
+                                            <span class="star-filled">★</span>
+                                        {% else %}
+                                            <span class="star-empty">☆</span>
+                                        {% endif %}
+                                    {% endfor %}
+                                    ({{ avg_rating|default:"No ratings" }})
+                                {% endwith %}
+                            </p>
+                            <p class="recipe-tags">
+                                {% for tag in recipe.tags.all %}
+                                    <span class="tag">{{ tag.name }}</span>
+                                {% endfor %}
+                            </p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <div class="browse-all">
+            <a href="{% url 'recipe_list' %}" class="btn">Browse All Recipes</a>
+        </div>
+    </main>
+</div>
 {% endblock %}

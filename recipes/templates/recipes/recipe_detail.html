@@ -1,102 +1,106 @@
 {% extends 'recipes/base.html' %}
-
+{% load static %}
 {% block content %}
 <div class="recipe-detail">
-    <h2 class="recipe-title">{{ recipe.title }}</h2>
-
-    {% if recipe.image %}
+    <!-- Recipe Image and Info -->
+    <div class="recipe-header">
         <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}" class="recipe-image">
-    {% else %}
-        <p>No image available for this recipe.</p>
-    {% endif %}
-
-    <div class="recipe-info">
-        <p><strong>Category:</strong> {{ recipe.get_category_display }}</p>
-        <p><strong>Difficulty:</strong> {{ recipe.get_difficulty_display }}</p>
-        <p><strong>Preparation Time:</strong> {{ recipe.prep_time }} minutes</p>
-        <p><strong>Cooking Time:</strong> {{ recipe.cook_time }} minutes</p>
-        <p><strong>Servings:</strong> {{ recipe.servings }}</p>
-        <p><strong>Created At:</strong> {{ recipe.created_at }}</p>
+        <div class="recipe-info">
+            <h1>{{ recipe.title }}</h1>
+            <p class="author">By {{ recipe.author.username }}</p>
+            <p class="recipe-meta">
+                Prep Time: {{ recipe.prep_time }} min | Cook Time: {{ recipe.cook_time }} min | Serves: {{ recipe.servings }}
+            </p>
+        </div>
     </div>
 
-    <h3>Ingredients</h3>
-    <ul class="ingredients-list">
-        {% for ingredient in recipe.ingredients.splitlines %}
-        <li>{{ ingredient }}</li>
-        {% endfor %}
-    </ul>
+    <!-- Rating Section -->
+    <section class="rating-section">
+        <h3>Ratings</h3>
+        <div class="recipe-rating-wrapper">
+            <!-- Average Rating -->
+            <div class="average-rating">
+                <p><strong>Average Rating:</strong>
+                    <span class="rating-stars">
+                        {% for i in "12345"|make_list %}
+                            {% if forloop.counter <= average_rating %}
+                                <span class="star filled">★</span>
+                            {% else %}
+                                <span class="star">☆</span>
+                            {% endif %}
+                        {% endfor %}
+                    </span>
+                    ({{ average_rating }})
+                </p>
+            </div>
 
-    <h3>Preparation</h3>
-    <ol class="preparation-steps">
-        {% for step in recipe.instructions.splitlines %}
-        <li>{{ step }}</li>
-        {% endfor %}
-    </ol>
-
-<h3>Ratings</h3>
-<div class="recipe-rating-wrapper">
-    <div class="average-rating">
-        <p><strong>Average Rating:</strong>
-            <span class="rating-stars">
-                {% for i in "12345"|make_list %}
-                    {% if forloop.counter <= average_rating %}
-                        <span>★</span>
-                    {% else %}
-                        <span>☆</span>
-                    {% endif %}
-                {% endfor %}
-            </span>
-            ({{ average_rating }})  <!-- Display the numeric average rating -->
-        </p>
-        
-</div>
-
-
-    <div class="user-rating">
-    {% if user_rating %}
-        <p><strong>Your Rating:</strong>
-            <span class="rating-stars">
-                {% for i in "12345"|make_list %}
-                    {% if i|add:0 <= user_rating.value %}
-                        <span>★</span>
-                    {% else %}
-                        <span>☆</span>
-                    {% endif %}
-                {% endfor %}
-            </span>
-            ({{ user_rating.value }})  <!-- Display the numeric user rating -->
-        </p>
-    {% else %}
-        <p>You haven't rated this recipe yet.</p>
-    {% endif %}
-</div>
-
-</div>
-
-<h3>Rate this Recipe</h3>
-<div class="recipe-rating-form">
-    <form method="POST">
-        {% csrf_token %}
-        <div class="rating-options">
-            <label>
-                <input type="radio" name="rating" value="1" {% if user_rating and user_rating.value == 1 %}checked{% endif %}> 1
-            </label>
-            <label>
-                <input type="radio" name="rating" value="2" {% if user_rating and user_rating.value == 2 %}checked{% endif %}> 2
-            </label>
-            <label>
-                <input type="radio" name="rating" value="3" {% if user_rating and user_rating.value == 3 %}checked{% endif %}> 3
-            </label>
-            <label>
-                <input type="radio" name="rating" value="4" {% if user_rating and user_rating.value == 4 %}checked{% endif %}> 4
-            </label>
-            <label>
-                <input type="radio" name="rating" value="5" {% if user_rating and user_rating.value == 5 %}checked{% endif %}> 5
-            </label>
+            <!-- User Rating -->
+            <div class="user-rating">
+                {% if user_rating %}
+                    <p><strong>Your Rating:</strong>
+                        <span class="rating-stars">
+                            {% for i in "12345"|make_list %}
+                                {% if i|add:0 <= user_rating.value %}
+                                    <span class="star filled">★</span>
+                                {% else %}
+                                    <span class="star">☆</span>
+                                {% endif %}
+                            {% endfor %}
+                        </span>
+                        ({{ user_rating.value }})
+                    </p>
+                {% else %}
+                    <p>You haven't rated this recipe yet.</p>
+                {% endif %}
+            </div>
         </div>
-        <button type="submit">Submit Rating</button>
-    </form>
+    </section>
+
+    <!-- Ingredients Section -->
+    <section class="ingredients">
+        <h2>Ingredients</h2>
+        <ul>
+            {% for ingredient in recipe.ingredients.splitlines %}
+                <li>{{ ingredient }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <!-- Instructions Section -->
+    <section class="instructions">
+        <h2>Instructions</h2>
+        <ol>
+            {% for step in recipe.instructions.splitlines %}
+                <li>{{ step }}</li>
+            {% endfor %}
+        </ol>
+    </section>
+
+    <!-- Rate this Recipe Section -->
+    <section class="rate-recipe">
+        <h3>Rate this Recipe</h3>
+        <div class="recipe-rating-form">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="rating-options">
+                    {% for value in "12345"|make_list %}
+                        <label>
+                            <input type="radio" name="rating" value="{{ value }}"
+                                {% if user_rating and user_rating.value == value %}checked{% endif %}> {{ value }}
+                        </label>
+                    {% endfor %}
+                </div>
+                <button type="submit" class="btn-submit">Submit Rating</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Related Recipes Section (if implemented) -->
+    <section class="related-recipes">
+        <h2>You Might Also Like</h2>
+        <div class="carousel">
+            <!-- Implement related recipe carousel here -->
+        </div>
+    </section>
 </div>
-
-
 {% endblock %}

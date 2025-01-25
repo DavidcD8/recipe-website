@@ -13,4 +13,6 @@ urlpatterns = [
     path('recipe/<int:pk>/', views.recipe_detail, name='recipe_detail'),
     path('recipe/<int:pk>/rate/', views.rate_recipe, name='rate_recipe'),
     path('recipes/', views.recipe_list, name='recipe_list'),
+    path('tag/<str:tag_name>/', views.tag_filter, name='tag_filter'),
+
 ]

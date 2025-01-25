@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-p^=&0oywo7%7owgxd(txg^2@96^@-&gn1b251q9#zo)7+#8^l$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['recipe-website-n9ck.onrender.com','*']
 
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'recipes',
+    'taggit',
 ]
 
 MIDDLEWARE = [
