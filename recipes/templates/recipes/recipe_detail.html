@@ -1,5 +1,6 @@
 {% extends 'recipes/base.html' %}
 {% load static %}
+
 {% block content %}
 <div class="recipe-detail">
     <!-- Recipe Image and Info -->
@@ -14,47 +15,6 @@
         </div>
     </div>
 
-    <!-- Rating Section -->
-    <section class="rating-section">
-        <h3>Ratings</h3>
-        <div class="recipe-rating-wrapper">
-            <!-- Average Rating -->
-            <div class="average-rating">
-                <p><strong>Average Rating:</strong>
-                    <span class="rating-stars">
-                        {% for i in "12345"|make_list %}
-                            {% if forloop.counter <= average_rating %}
-                                <span class="star filled">★</span>
-                            {% else %}
-                                <span class="star">☆</span>
-                            {% endif %}
-                        {% endfor %}
-                    </span>
-                    ({{ average_rating }})
-                </p>
-            </div>
-
-            <!-- User Rating -->
-            <div class="user-rating">
-                {% if user_rating %}
-                    <p><strong>Your Rating:</strong>
-                        <span class="rating-stars">
-                            {% for i in "12345"|make_list %}
-                                {% if i|add:0 <= user_rating.value %}
-                                    <span class="star filled">★</span>
-                                {% else %}
-                                    <span class="star">☆</span>
-                                {% endif %}
-                            {% endfor %}
-                        </span>
-                        ({{ user_rating.value }})
-                    </p>
-                {% else %}
-                    <p>You haven't rated this recipe yet.</p>
-                {% endif %}
-            </div>
-        </div>
-    </section>
 
     <!-- Ingredients Section -->
     <section class="ingredients">
@@ -75,6 +35,49 @@
             {% endfor %}
         </ol>
     </section>
+
+    <!-- Rating Section -->
+<section class="rating-section">
+    <h3>Ratings</h3>
+    <div class="rating-wrapper">
+        <!-- Average Rating -->
+        <div class="average-rating">
+            <p><strong>Average Rating:</strong>
+                <span class="rating-stars">
+                    {% for i in "12345"|make_list %}
+                        {% if forloop.counter <= average_rating %}
+                            <span class="star filled">★</span>
+                        {% else %}
+                            <span class="star">☆</span>
+                        {% endif %}
+                    {% endfor %}
+                </span>
+                ({{ average_rating }})
+            </p>
+        </div>
+
+        <!-- User Rating -->
+        <div class="user-rating">
+            {% if user_rating %}
+                <p><strong>Your Rating:</strong>
+                    <span class="rating-stars">
+                        {% for i in "12345"|make_list %}
+                            {% if i|add:0 <= user_rating.value %}
+                                <span class="star filled">★</span>
+                            {% else %}
+                                <span class="star">☆</span>
+                            {% endif %}
+                        {% endfor %}
+                    </span>
+                    ({{ user_rating.value }})
+                </p>
+            {% else %}
+                <p>You haven't rated this recipe yet.</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
 
     <!-- Rate this Recipe Section -->
     <section class="rate-recipe">
