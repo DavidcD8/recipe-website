@@ -1,0 +1,17 @@
+[33m83c8fb2[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m HEAD@{0}: checkout: moving from 70db342ea5f5d7420978b0baccba0aefdf27d7fd to main
+[33m70db342[m HEAD@{1}: commit: Initial commit with recipe project files
+[33m752426e[m[33m ([m[1;32mrestore-branch[m[33m, [m[1;32mrecover-branch[m[33m)[m HEAD@{2}: checkout: moving from main to 752426e
+[33m83c8fb2[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m HEAD@{3}: checkout: moving from recover-branch to main
+[33m752426e[m[33m ([m[1;32mrestore-branch[m[33m, [m[1;32mrecover-branch[m[33m)[m HEAD@{4}: checkout: moving from 752426eec230d5634c3308b42caa07ef3bb64987 to recover-branch
+[33m752426e[m[33m ([m[1;32mrestore-branch[m[33m, [m[1;32mrecover-branch[m[33m)[m HEAD@{5}: checkout: moving from restore-branch to 752426e
+[33m752426e[m[33m ([m[1;32mrestore-branch[m[33m, [m[1;32mrecover-branch[m[33m)[m HEAD@{6}: checkout: moving from 752426eec230d5634c3308b42caa07ef3bb64987 to restore-branch
+[33m752426e[m[33m ([m[1;32mrestore-branch[m[33m, [m[1;32mrecover-branch[m[33m)[m HEAD@{7}: checkout: moving from main to 752426e
+[33m83c8fb2[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m HEAD@{8}: Branch: renamed refs/heads/main to refs/heads/main
+[33m83c8fb2[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m HEAD@{10}: commit: first commit
+[33m752426e[m[33m ([m[1;32mrestore-branch[m[33m, [m[1;32mrecover-branch[m[33m)[m HEAD@{11}: reset: moving to HEAD~1
+[33mb22e43a[m HEAD@{12}: Branch: renamed refs/heads/main to refs/heads/main
+[33mb22e43a[m HEAD@{14}: commit: first
+[33m752426e[m[33m ([m[1;32mrestore-branch[m[33m, [m[1;32mrecover-branch[m[33m)[m HEAD@{15}: Branch: renamed refs/heads/main to refs/heads/main
+[33m752426e[m[33m ([m[1;32mrestore-branch[m[33m, [m[1;32mrecover-branch[m[33m)[m HEAD@{17}: Branch: renamed refs/heads/main to refs/heads/main
+[33m752426e[m[33m ([m[1;32mrestore-branch[m[33m, [m[1;32mrecover-branch[m[33m)[m HEAD@{19}: Branch: renamed refs/heads/main to refs/heads/main
+[33m752426e[m[33m ([m[1;32mrestore-branch[m[33m, [m[1;32mrecover-branch[m[33m)[m HEAD@{21}: clone: from https://github.com/DavidcD8/recipe-website.git
