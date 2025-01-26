@@ -14,17 +14,17 @@ body {
     line-height: 1.6;
     color: #333;
     background-color: #f4f4f4;
-    padding: 0 15px;
 }
 
 /* Header and Navbar styles */
 header {
     background-color: #f8f8f8;
     padding: 1rem 2rem;
-    color: #333;
+    color: #ff6f61;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-right: 1px;
 }
 
 header .logo {
@@ -33,7 +33,7 @@ header .logo {
 }
 
 header nav a {
-    color: #333;
+    color: #ff6f61;
     text-decoration: none;
     margin: 0 10px;
     font-size: 1rem;
@@ -48,11 +48,12 @@ header nav .active {
 
 /* Hero Section */
 #hero {
-    background: url('/static/images/heroimg.jpg') center/cover no-repeat;
+    background: url('/static/images/heroi.jpg') center/cover no-repeat;
     height: 400px;
     display: flex;
     justify-content: center;
     align-items: center;
+    object-fit: cover;
     color: #ffffff;
     text-align: center;
 }
@@ -89,22 +90,42 @@ footer {
     margin: 20px 0;
 }
 
+
+
+/* Home style */
+.new-recipes h2 {
+    font-size: 2.5rem;
+    color: #7ebc26;
+    border-bottom: 1px solid #dfdfdf; /* Add a dotted line below the heading */
+    padding-bottom: 0.5rem; /* Space between the text and the dividing line */
+}
+
+.popular-recipes h2 {
+    font-size: 2.5rem;
+    color: #7ebc26;
+    border-bottom: 1px solid #dfdfdf; /* Add a dotted line above the heading */
+    padding-top: 0.5rem; /* Space between the dividing line and the text */
+}
+
+
 /* Recipe Card */
+.recipe-title{
+    text-decoration: none;
+    font-size: 1.5rem;
+
+}
 .recipe-card {
-    border: 1px solid #ddd;
     border-radius: 8px;
     overflow: hidden;
     background: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.recipe-card:hover {
-    transform: scale(1.03);
-}
+
 
 /* Recipe Thumbnail */
 .recipe-thumbnail {
@@ -130,7 +151,7 @@ footer {
 }
 
 .recipe-rating {
-    color: #e8d016;
+    color: #e8ad16;
     font-size: 2rem;
 }
 
@@ -157,8 +178,7 @@ footer {
 
 /* Buttons */
 .view-recipe-btn {
-    background: #ff6f61;
-    color: white;
+    color: rgb(102, 102, 102);
     padding: 10px;
     text-align: center;
     border-radius: 5px;
@@ -167,8 +187,9 @@ footer {
     transition: background-color 0.3s;
 }
 
+
 .view-recipe-btn:hover {
-    background-color: #e65a50;
+    color: rgb(78, 237, 78);
 }
 
 /* Featured Recipes Section */

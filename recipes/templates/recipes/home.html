@@ -13,7 +13,7 @@
             </div>
         </section>
 
-        <!-- New Recipes -->
+
 <!-- New Recipes Section -->
 <section class="new-recipes">
     <div class="section-header">
@@ -28,7 +28,7 @@
 
                 <!-- Recipe Info -->
                 <div class="recipe-info">
-                    <h3 class="recipe-title">{{ recipe.title }}</h3>
+                    <a href="{% url 'recipe_detail' recipe.pk %}"<h3 class="recipe-title">{{ recipe.title | upper }}</h3></a>
                     <p class="recipe-author">
                         By {{ recipe.author.username }} - {{ recipe.created_at|date:"M d, Y" }}
                     </p>
@@ -56,7 +56,7 @@
 
                     <!-- Recipe Description -->
                     <p class="recipe-description">{{ recipe.description|truncatewords:20 }}</p>
-                    
+
                     <!-- View Recipe Button -->
                     <a href="{% url 'recipe_detail' recipe.pk %}" class="view-recipe-btn">View Recipe</a>
                 </div>
