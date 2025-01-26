@@ -12,7 +12,6 @@
 body {
     font-family: 'Markazi Text', serif;
     line-height: 1.6;
-    color: #333;
     background-color: #f4f4f4;
 }
 
@@ -82,6 +81,34 @@ footer {
     padding: 20px;
 }
 
+
+
+/* Add Recipe Button */
+.add-recipe-btn {
+    background-color: #ff6f61; /* Green color for contrast */
+    color: white;
+    padding: 6px 10px;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.3s;
+    margin-top: 20px; /* Adds some space from the content above */
+    margin-bottom: 20px;
+
+}
+
+.add-recipe-btn:hover {
+    background-color: #e65a50; /* Slightly darker shade on hover */
+    transform: translateY(-2px); /* Adds a subtle lift effect */
+}
+
+.add-recipe-btn:focus {
+    outline: 3px solid #f8f8f8; /* Optional: add focus outline for accessibility */
+    outline-offset: 2px;
+}
+
 /* Recipe Grid Layout */
 .grid {
     display: grid;
@@ -90,7 +117,12 @@ footer {
     margin: 20px 0;
 }
 
-
+.add-recipe h2 {
+    font-size: 2.5rem;
+    color: #7ebc26;
+    border-bottom: 1px solid #dfdfdf; /* Add a dotted line below the heading */
+    padding-bottom: 0.5rem; /* Space between the text and the dividing line */
+}
 
 /* Home style */
 .new-recipes h2 {
@@ -112,8 +144,9 @@ footer {
 .recipe-title{
     text-decoration: none;
     font-size: 1.5rem;
-
+    text-decoration: dotted;
 }
+
 .recipe-card {
     border-radius: 8px;
     overflow: hidden;
@@ -134,6 +167,7 @@ footer {
     object-fit: cover;
     margin-bottom: 0;
     display: block;
+
 }
 
 /* Recipe Info */
@@ -142,13 +176,20 @@ footer {
     display: flex;
     flex-direction: column;
     gap: 10px;
+
 }
 
 .recipe-info h3 {
     font-size: 1.8rem;
     font-weight: 600;
     color: #333;
+    text-decoration: none;
 }
+
+.recipe-info a {
+    text-decoration: none;
+}
+
 
 .recipe-rating {
     color: #e8ad16;
@@ -189,7 +230,7 @@ footer {
 
 
 .view-recipe-btn:hover {
-    color: rgb(78, 237, 78);
+    color: #7ebc26;
 }
 
 /* Featured Recipes Section */
