@@ -1,4 +1,5 @@
 # views.py
+from django.forms import ValidationError
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login as auth_login
@@ -11,7 +12,10 @@ from PIL import Image
 from taggit.models import Tag
 from datetime import timedelta
 from django.utils import timezone
- 
+from django.db.models import Q
+from .forms import RecipeForm
+
+
 def tag_filter(request, tag_name):
     tag = Tag.objects.get(name=tag_name)
     recipes = Recipe.objects.filter(tags__name=tag_name)
@@ -44,7 +48,7 @@ def login_view(request):
     return render(request, 'registration/login.html', {'form': form})
 
 
- 
+
 # home view
 def home(request):
     # Get all tags for the sidebar filter
@@ -80,53 +84,82 @@ def home(request):
     }
 
     return render(request, 'recipes/home.html', context)
-        
 
 
 
-# Recipe list view
+
+
+# Recipe list
 def recipe_list(request):
-    q = request.GET.get('q', '')
-    difficulty = request.GET.get('difficulty', '')
-    category = request.GET.get('category', '')
-    tag = request.GET.get('tag', '')
+    # Instantiate the form with GET data
+    form = RecipeForm(request.GET)
 
+    # Start with all recipes
     recipes = Recipe.objects.all()
 
-    if q:
-        recipes = recipes.filter(Q(title__icontains=q) | Q(ingredients__icontains=q) | Q(instructions__icontains=q))
-    
-    if difficulty:
-        recipes = recipes.filter(difficulty=difficulty)
-    
-    if category:
-        recipes = recipes.filter(category=category)
+    if form.is_valid():  # Check if the form is valid
+        q = form.cleaned_data['q']
+        difficulty = form.cleaned_data['difficulty']
+        category = form.cleaned_data['category']
 
-    if tag:
-        recipes = recipes.filter(tags__name__icontains=tag)
+        # Search by title, ingredients, or instructions
+        if q:
+            recipes = recipes.filter(
+                Q(title__icontains=q) | Q(ingredients__icontains=q) | Q(instructions__icontains=q)
+            )
+
+        # Filter by difficulty
+        if difficulty:
+            recipes = recipes.filter(difficulty=difficulty)
+
+        # Filter by category
+        if category:
+            recipes = recipes.filter(category=category)
 
     recipes = recipes.order_by('-created_at')
-    
-    paginator = Paginator(recipes, 10) # Show 10 recipes per page
+
+    # Fetch choices for consistency
+    difficulties = [choice[0] for choice in Recipe._meta.get_field('difficulty').choices]
+    categories = [choice[0] for choice in Recipe._meta.get_field('category').choices]
+
+    # Pagination
+    paginator = Paginator(recipes, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    return render(request, 'recipes/recipe_list.html', {'page_obj': page_obj})
+    context = {
+        'form': form,  # Pass the form to the template
+        'page_obj': page_obj,
+        'difficulties': difficulties,
+        'categories': categories,
+    }
+
+    return render(request, 'recipes/recipe_list.html', context)
+
+
+
 
 
 # Recipe detail view
-@login_required
 def recipe_detail(request, pk):
     recipe = get_object_or_404(Recipe, pk=pk)
     average_rating = recipe.average_rating()
-    user_rating = Rating.objects.filter(recipe=recipe, user=request.user).first()
+    user_rating = None
+
+    # Only fetch user_rating if the user is authenticated
+    if request.user.is_authenticated:
+        user_rating = Rating.objects.filter(recipe=recipe, user=request.user).first()
 
     if request.method == 'POST':
+        # Ensure the user is authenticated before processing the rating
+        if not request.user.is_authenticated:
+            return redirect('login')  # Redirect unauthenticated users to the login page
+
         rating_value = request.POST.get('rating')
 
         if rating_value:
             rating_value = int(rating_value)
-            
+
             # Validate rating value (should be between 1 and 5)
             if rating_value < 1 or rating_value > 5:
                 return render(request, 'recipes/recipe_detail.html', {
@@ -151,7 +184,10 @@ def recipe_detail(request, pk):
     }
     return render(request, 'recipes/recipe_detail.html', context)
 
-# Add recipe view@login_required
+
+
+# Add recipe view
+@login_required
 def add_recipe(request):
     if request.method == 'POST':
         form = RecipeForm(request.POST, request.FILES)

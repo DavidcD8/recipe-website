@@ -1,20 +1,60 @@
 {% extends 'recipes/base.html' %}
 
 {% block content %}
-<h2>Recipes</h2>
-<ul>
-    {% for recipe in recipes %}
-    <li style="margin-bottom: 2rem;">
-        {% if recipe.image %}
-            <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}" style="max-width: 150px; height: auto; margin-right: 1rem; float: left;">
-        {% endif %}
-        <div>
-            <a href="{% url 'recipe_detail' recipe.pk %}">{{ recipe.title }}</a> 
-            - {{ recipe.get_category_display }} ({{ recipe.get_difficulty_display }})
-            <p>Prep Time: {{ recipe.prep_time }} min | Cook Time: {{ recipe.cook_time }} min</p>
+<div class="recipe-list-container">
+    <h1 class="recipe-list-title">Recipes</h1>
+
+    <form class="search-filter-form" method="GET">
+        <input type="text" name="q" placeholder="Search recipes..." value="{{ request.GET.q|default_if_none:'' }}">
+
+        <select name="difficulty">
+            <option value="">All Difficulties</option>
+            {% for diff in difficulties %}
+                <option value="{{ diff }}" {% if diff == difficulty %}selected{% endif %}>{{ diff }}</option>
+            {% endfor %}
+        </select>
+
+        <select name="category">
+            <option value="">All Categories</option>
+            {% for cat in categories %}
+                <option value="{{ cat }}" {% if cat == category %}selected{% endif %}>{{ cat }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Filter</button>
+    </form>
+
+
+    {% for recipe in page_obj %}
+        <div class="recipe-card">
+            <h2 class="recipe-title">{{ recipe.title }}</h2>
+            <div class="recipe-info">
+                <span>Difficulty: {{ recipe.difficulty }}</span>
+                <span>Category: {{ recipe.category }}</span>
+                <span>Tags: {% for tag in recipe.tags.all %}{{ tag.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</span>
+            </div>
+            <a href="{% url 'recipe_detail' recipe.id %}">View Recipe</a>
         </div>
-        <div style="clear: both;"></div>
-    </li>
+    {% empty %}
+        <p>No recipes found.</p>
     {% endfor %}
-</ul>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1&q={{ request.GET.q|urlencode }}&difficulty={{ request.GET.difficulty|urlencode }}&category={{ request.GET.category|urlencode }}&tag={{ request.GET.tag|urlencode }}">« first</a>
+                <a href="?page={{ page_obj.previous_page_number }}&q={{ request.GET.q|urlencode }}&difficulty={{ request.GET.difficulty|urlencode }}&category={{ request.GET.category|urlencode }}&tag={{ request.GET.tag|urlencode }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}&q={{ request.GET.q|urlencode }}&difficulty={{ request.GET.difficulty|urlencode }}&category={{ request.GET.category|urlencode }}&tag={{ request.GET.tag|urlencode }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}&q={{ request.GET.q|urlencode }}&difficulty={{ request.GET.difficulty|urlencode }}&category={{ request.GET.category|urlencode }}&tag={{ request.GET.tag|urlencode }}">last »</a>
+            {% endif %}
+        </span>
+    </div>
+</div>
 {% endblock %}

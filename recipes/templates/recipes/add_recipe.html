@@ -1,16 +1,32 @@
 {% extends 'recipes/base.html' %}
 
-{% block content %}<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {% for field in form %}
-        <div class="fieldWrapper">
-            {{ field.errors }}
-            {{ field.label_tag }} {{ field }}
-            {% if field.help_text %}
-                <p class="help">{{ field.help_text|safe }}</p>
-            {% endif %}
-        </div>
-    {% endfor %}
-    <button type="submit">Submit Recipe</button>
-</form>
+{% block content %}
+<div class="add-recipe-container">
+    <h1 class="page-title">Add a New Recipe</h1>
+    <form method="post" enctype="multipart/form-data" class="recipe-form">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="field-wrapper{% if field.name == 'tags' %} tags-field{% endif %}">
+                {{ field.errors }}
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {% if field.name == 'tags' %}
+                    <div class="tags-checkboxes">
+                    {% for choice in form.tags.field.choices %}
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="tags" value="{{ choice.0 }}" {% if choice.0 in form.initial.tags %}checked{% endif %}>
+                            {{ choice.1 }}
+                        </label>
+                    {% endfor %}
+                    </div>
+                {% else %}
+                    {{ field }}
+                {% endif %}
+                {% if field.help_text %}
+                    <p class="help-text">{{ field.help_text|safe }}</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+        <button type="submit" class="submit-button">Submit Recipe</button>
+    </form>
+</div>
 {% endblock %}
