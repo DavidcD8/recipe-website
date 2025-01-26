@@ -57,7 +57,7 @@ header nav .active {
 
 /* Hero Section */
 #hero {
-    background: url('/static/images/heroi.jpg') center/cover no-repeat;
+    background: url("/static/images/heroi.45df6d773fdb.jpg") center/cover no-repeat;
     height: 400px;
     display: flex;
     justify-content: center;
