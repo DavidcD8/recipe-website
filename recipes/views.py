@@ -9,8 +9,9 @@ from .forms import RecipeForm
 from .models import Recipe, Rating
 from PIL import Image
 from taggit.models import Tag
-
-
+from datetime import timedelta
+from django.utils import timezone
+ 
 def tag_filter(request, tag_name):
     tag = Tag.objects.get(name=tag_name)
     recipes = Recipe.objects.filter(tags__name=tag_name)
@@ -42,38 +43,46 @@ def login_view(request):
         form = AuthenticationForm()
     return render(request, 'registration/login.html', {'form': form})
 
-# Home view
+
+ 
+# home view
 def home(request):
     # Get all tags for the sidebar filter
-    tags = Tag.objects.all().order_by('name')[:10]  # Fetch tags
+    tags = Tag.objects.all().order_by('name')[:10]
 
     # Featured recipes with highest average ratings
     featured_recipes = Recipe.objects.annotate(
         avg_rating=Avg('rating__value')
-    ).order_by('-avg_rating')[:3]
+    ).order_by('-avg_rating')[:4]
 
-    # Newest recipes
-    new_recipes = Recipe.objects.all().order_by('-created_at')[:5]
+    # Newest recipes (sorted by Recipe's created_at field, limited to 4)
+    new_recipes = Recipe.objects.all().order_by('-created_at')[:4]
 
-    # Suggested recipes, assuming these are based on highest ratings again
-    suggested_recipes = Recipe.objects.annotate(
+    # Popular recipes: recipes with average ratings >= 5 over the past 30 days
+    thirty_days_ago = timezone.now() - timedelta(days=30)
+    popular_recipes = Recipe.objects.filter(
+        created_at__gte=thirty_days_ago
+    ).annotate(
         avg_rating=Avg('rating__value')
+    ).filter(
+        avg_rating__gte=5  # Filter recipes with avg_rating >= 5
     ).order_by('-avg_rating')[:5]
 
     # Range for displaying stars in the template
     ratings_range = range(1, 6)
 
-    # Pass the tags to the template for the sidebar
     context = {
         'featured_recipes': featured_recipes,
         'new_recipes': new_recipes,
-        'all_recipes': Recipe.objects.all(),  # all recipes for potential further use
-        'suggested_recipes': suggested_recipes,
+        'popular_recipes': popular_recipes,
         'ratings_range': ratings_range,
-        'tags': tags,  # Use the fetched tags here, not TAGS
+        'tags': tags,  # Use the fetched tags here
     }
 
     return render(request, 'recipes/home.html', context)
+        
+
+
 
 # Recipe list view
 def recipe_list(request):

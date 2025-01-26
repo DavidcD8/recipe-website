@@ -45,30 +45,68 @@ body {
   padding: 20px;
 }
 
-/* Hero styles */
-.hero {
-  position: relative;
-  height: 400px;
-  overflow: hidden;
+/* Nav Styling */
+header {
+  background-color: #ffffff;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr); /* 12 equal columns */
+  align-items: center; /* Align content vertically in the middle */
 }
 
-.hero img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+header h1 {
+  margin-bottom: 2px;
+  grid-column: 2 / span 8; /* Title starts at column 2 and spans 8 columns */
 }
 
-.hero-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+header h1 a {
+  color: #ff6f61;
+  text-decoration: none;
+}
+
+nav {
+  grid-column: 8/ span 4;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  align-items: center;
+  justify-content: end;
+  gap: 1rem;
+  margin-top: 0;
+}
+
+nav a {
+  color: #ff6f61;
+  margin-top:  -8px;
+  text-decoration: none;
   text-align: center;
-  color: white;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 20px;
 }
 
+nav a:hover {
+  color: #e65a50;
+  transition: color 0.3s ease;
+}
+
+/* Hero Section */
+#hero {
+  background: url('/static/images/heroimg.jpg') center/cover no-repeat;
+  height: 400px;
+  display: flex;
+  object-fit: cover;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  text-align: center;
+}
+
+#hero .hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+#hero .hero-content p {
+  font-size: 1.35rem;
+  margin-bottom: 20px;
+}
 /* Featured Recipes */
 .carousel {
   display: flex;
@@ -291,3 +329,38 @@ body {
   padding: 10px;
 }
 
+/* Rating Section Styles */
+.rating-wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px; /* Space between the two rating sections */
+}
+
+.average-rating,
+.user-rating {
+  flex: 1; /* Allow them to grow and fill space equally */
+}
+
+/* Optional: Style for the individual sections */
+.average-rating p,
+.user-rating p {
+  margin: 0;
+}
+/* Add divider lines between sections in the recipe detail page */
+.recipe-header,
+.rating-section,
+.ingredients,
+.instructions,
+.rate-recipe,
+.related-recipes {
+  border-top: 1px solid #ddd;
+  padding-top: 20px;
+  margin-top: 20px;
+}
+
+/* Optional: Remove the border from the first section (recipe header) */
+.recipe-header {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 0;
+}
