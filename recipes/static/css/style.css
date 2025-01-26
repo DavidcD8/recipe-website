@@ -115,7 +115,7 @@ footer {
 }
 
 .add-recipe-btn:focus {
-    outline: 3px solid #f8f8f8; /* Optional: add focus outline for accessibility */
+    outline: 3px solid #f8f8f8;
     outline-offset: 2px;
 }
 
