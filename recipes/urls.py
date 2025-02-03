@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 from django.contrib.auth.views import LogoutView
 from django.contrib.auth.views import LoginView
+from recipes.views import handler404
 
 
 urlpatterns = [
@@ -16,3 +17,6 @@ urlpatterns = [
     path('tag/<str:tag_name>/', views.tag_filter, name='tag_filter'),
 
 ]
+
+
+ 

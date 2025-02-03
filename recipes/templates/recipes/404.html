@@ -1,0 +1,10 @@
+{% extends 'recipes/base.html' %}
+{% load static %}
+{% block content %}
+<div class="not-found-container">
+    <h1>404: Page not Found!</h1>
+    <button class="view-recipe-btn">
+        <a href="{% url 'home' %}">Go to Homepage</a>
+    </button>
+</div>
+{% endblock %}

@@ -16,6 +16,12 @@ from django.db.models import Q
 from .forms import RecipeForm
 
 
+
+
+def handler404(request, exception):
+    return render(request, 'recipes/404.html', status=404)
+
+
 def tag_filter(request, tag_name):
     tag = Tag.objects.get(name=tag_name)
     recipes = Recipe.objects.filter(tags__name=tag_name)
